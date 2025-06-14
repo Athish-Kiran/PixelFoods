@@ -26,6 +26,7 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media/
+staticfiles/
 
 # Virtual Environment
 venv/
@@ -93,4 +94,8 @@ venv.bak/
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db 
