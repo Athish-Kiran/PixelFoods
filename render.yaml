@@ -1,23 +1,20 @@
 services:
   - type: web
-    name: tindimithra
+    name: pixel-foods
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn tindimithra.wsgi:application"
+    startCommand: "gunicorn pixel_foods.wsgi:application"
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.12.0
-      - key: SECRET_KEY
-        generateValue: true
-      - key: DEBUG
-        value: false
       - key: DATABASE_URL
         fromDatabase:
-          name: tindimithra-db
+          name: pixel-foods-db
           property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
 
 databases:
-  - name: tindimithra-db
-    databaseName: tindimithra
-    user: tindimithra
-    plan: free 
+  - name: pixel-foods-db
+    databaseName: pixel_foods
+    user: pixel_foods 

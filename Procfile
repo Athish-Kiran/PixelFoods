@@ -1,1 +1,1 @@
-web: gunicorn tindimithra.wsgi:application 
+web: gunicorn pixel_foods.wsgi:application 
