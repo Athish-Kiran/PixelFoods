@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Order #{{ order.id }} - Pixel Foods{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'meals:order_list' %}">My Orders</a></li>
+                    <li class="breadcrumb-item active">Order #{{ order.id }}</li>
+                </ol>
+            </nav>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="h4 mb-0">Order #{{ order.id }}</h2>
+                        <span class="badge {% if order.status == 'pending' %}bg-warning{% elif order.status == 'confirmed' %}bg-info{% elif order.status == 'completed' %}bg-success{% else %}bg-danger{% endif %} fs-6">
+                            {{ order.get_status_display }}
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Order Information</h5>
+                            <p><strong>Order Date:</strong> {{ order.created_at|date:"F d, Y H:i" }}</p>
+                            <p><strong>Delivery Address:</strong> {{ order.delivery_address }}</p>
+                            <p><strong>Delivery Time:</strong> {{ order.delivery_time|date:"F d, Y H:i" }}</p>
+                            <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Dish Information</h5>
+                            <p><strong>Dish:</strong> {{ order.dish.name }}</p>
+                            <p><strong>Chef:</strong> {{ order.dish.chef.get_full_name }}</p>
+                            <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+                            <p><strong>Price per item:</strong> ₹{{ order.dish.price }}</p>
+                            <p><strong>Total Price:</strong> ₹{{ order.total_price }}</p>
+                        </div>
+                    </div>
+
+                    {% if order.status == 'pending' %}
+                    <div class="mt-4">
+                        <a href="{% url 'meals:order_cancel' order.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this order?')">Cancel Order</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

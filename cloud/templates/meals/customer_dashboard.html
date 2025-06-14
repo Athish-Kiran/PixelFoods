@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Dashboard - Pixel Foods{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4">Customer Dashboard</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0">My Orders</h5>
+                </div>
+                <div class="card-body">
+                    {% if orders %}
+                        <ul class="list-group list-group-flush">
+                            {% for order in orders %}
+                                <li class="list-group-item">
+                                    <h6>{{ order.dish.name }}</h6>
+                                    <p class="mb-0">Quantity: {{ order.quantity }}</p>
+                                    <p class="mb-0">Status: {{ order.status }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">No orders found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0">My Subscriptions</h5>
+                </div>
+                <div class="card-body">
+                    {% if subscriptions %}
+                        <ul class="list-group list-group-flush">
+                            {% for subscription in subscriptions %}
+                                <li class="list-group-item">
+                                    <h6>{{ subscription.chef.get_full_name }}</h6>
+                                    <p class="mb-0">Plan: {{ subscription.plan_name }}</p>
+                                    <p class="mb-0">Status: {{ subscription.status }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">No subscriptions found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

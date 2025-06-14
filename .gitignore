@@ -26,7 +26,6 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media/
-staticfiles/
 
 # Virtual Environment
 venv/
@@ -39,11 +38,19 @@ env/
 *.swp
 *.swo
 
-# Environment variables
-.env
+# OS
+.DS_Store
+Thumbs.db
 
-# Static files
-static/
+# Project specific
+.env
+.env.local
+.env.*.local
+
+# Allow static files
+!static/
+!static/images/
+!static/images/favicon.png
 
 # Coverage
 htmlcov/
