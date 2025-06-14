@@ -14,7 +14,8 @@ python manage.py showmigrations
 
 # Create fresh migrations
 echo "Creating fresh migrations..."
-python manage.py makemigrations --noinput
+python manage.py makemigrations users
+python manage.py makemigrations meals
 
 # Apply migrations
 echo "Applying migrations..."
