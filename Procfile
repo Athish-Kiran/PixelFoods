@@ -1,1 +1,0 @@
-web: gunicorn pixel_foods.wsgi:application 
