@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'tindimithra.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://tindimithra:rqwhxnfeFkOxEIaZ8fszGt1IWhLyJACL@dpg-d16qdmidbo4c73coh2f0-a.oregon-postgres.render.com/tindimithra',
+        default='postgresql://tindimithra:rqwhxnfeFkOxEIaZ8fszGt1IWhLyJACL@dpg-d16qdmidbo4c73coh2f0-a/tindimithra',
         conn_max_age=600,
         conn_health_checks=True,
     )
