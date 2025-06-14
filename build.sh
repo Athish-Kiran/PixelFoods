@@ -12,15 +12,10 @@ echo "Running database migrations..."
 echo "Current migrations:"
 python manage.py showmigrations
 
-# Remove old migrations
-echo "Removing old migrations..."
-rm -rf users/migrations/0*.py
-rm -rf meals/migrations/0*.py
-
-# Create fresh migrations for PostgreSQL
-echo "Creating fresh migrations..."
-python manage.py makemigrations users --noinput
-python manage.py makemigrations meals --noinput
+# Copy PostgreSQL migrations
+echo "Setting up PostgreSQL migrations..."
+cp -r postgres_migrations/users/* users/migrations/
+cp -r postgres_migrations/meals/* meals/migrations/
 
 # Apply migrations
 echo "Applying migrations..."
