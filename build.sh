@@ -7,8 +7,15 @@ pip install -r requirements.txt
 
 # Run database migrations
 echo "Running database migrations..."
-python manage.py makemigrations users --noinput
-python manage.py makemigrations meals --noinput
+# First, ensure all migrations are created
+python manage.py makemigrations --noinput
+
+# Then apply migrations in the correct order
+echo "Applying migrations..."
+python manage.py migrate auth --noinput
+python manage.py migrate contenttypes --noinput
+python manage.py migrate admin --noinput
+python manage.py migrate sessions --noinput
 python manage.py migrate users --noinput
 python manage.py migrate meals --noinput
 python manage.py migrate --noinput
