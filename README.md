@@ -1,7 +1,7 @@
-# ThindiMithra - Cloud Kitchen Management System
+# Pixel Foods - Cloud Kitchen Management System
 
 ## Project Overview
-ThindiMithra is a comprehensive cloud kitchen management system designed to streamline the operations of cloud kitchens. The platform enables kitchen owners to manage their menu, handle orders, track subscriptions, and process payments efficiently.
+Pixel Foods is a comprehensive cloud kitchen management system designed to streamline the operations of cloud kitchens. The platform enables kitchen owners to manage their menu, handle orders, track subscriptions, and process payments efficiently.
 
 ## Features
 
@@ -66,7 +66,7 @@ ThindiMithra is a comprehensive cloud kitchen management system designed to stre
 
 ## Project Structure
 ```
-tindimithra/
+pixel_foods/
 ├── meals/                 # Main application
 │   ├── models.py         # Database models
 │   ├── views.py          # View logic
