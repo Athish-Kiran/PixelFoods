@@ -7,10 +7,6 @@
     "deploy": {
         "startCommand": "gunicorn pixel_foods.wsgi:application --bind 0.0.0.0:$PORT",
         "healthcheckPath": "/",
-        "healthcheckTimeout": 100,
-        "restartPolicy": {
-            "type": "on-failure",
-            "maxRetries": 10
-        }
+        "healthcheckTimeout": 100
     }
 } 
