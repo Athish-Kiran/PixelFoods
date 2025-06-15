@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.humanize',
+    'storages',
 ]
 
 # Custom user model
@@ -125,6 +126,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Serve media files in production
+if not DEBUG:
+    # Add media files to static files
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+        os.path.join(BASE_DIR, 'media'),
+    ]
+    # Configure whitenoise to serve media files
+    WHITENOISE_MEDIA_PREFIX = '/media/'
+    WHITENOISE_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -150,9 +162,15 @@ RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', '')
 handler404 = 'meals.views.handler404'
 handler500 = 'meals.views.handler500'
 
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-2049c.up.railway.app',
+    'https://*.up.railway.app'
+]
+
 # Security settings for production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False') == 'True'
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True

@@ -49,8 +49,8 @@ class UserRegistrationForm(UserCreationForm):
         if commit:
             user.save()
             
-            # Create chef profile if user is a chef
-            if user.is_chef:
+            # Create chef profile if user is a chef and doesn't already have one
+            if user.is_chef and not ChefProfile.objects.filter(user=user).exists():
                 ChefProfile.objects.create(
                     user=user,
                     specialization=self.cleaned_data['specialization'],
