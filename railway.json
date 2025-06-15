@@ -5,8 +5,18 @@
         "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput"
     },
     "deploy": {
-        "startCommand": "python manage.py migrate && gunicorn pixel_foods.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 0 --access-logfile - --error-logfile - --log-level info",
+        "startCommand": "python manage.py migrate && gunicorn pixel_foods.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 0 --access-logfile - --error-logfile - --log-level debug",
         "healthcheckPath": "/",
-        "healthcheckTimeout": 300
+        "healthcheckTimeout": 300,
+        "restartPolicy": {
+            "type": "on-failure",
+            "maxRetries": 10
+        }
+    },
+    "variables": {
+        "DEBUG": "False",
+        "ALLOWED_HOSTS": "*",
+        "RAILWAY_ENVIRONMENT": "production",
+        "SECURE_SSL_REDIRECT": "False"
     }
 } 

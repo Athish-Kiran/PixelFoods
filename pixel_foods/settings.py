@@ -150,9 +150,15 @@ RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', '')
 handler404 = 'meals.views.handler404'
 handler500 = 'meals.views.handler500'
 
+# CSRF settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-2049c.up.railway.app',
+    'https://*.up.railway.app'
+]
+
 # Security settings for production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False') == 'True'
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
