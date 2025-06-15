@@ -10,8 +10,12 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 def dish_list(request):
-    dishes = Dish.objects.filter(is_available=True)
-    return render(request, 'meals/dish_list.html', {'dishes': dishes})
+    dishes = Dish.objects.filter(is_available=True).exclude(is_featured=True).order_by('-created_at')
+    featured_dishes = Dish.objects.filter(is_available=True, is_featured=True).order_by('-created_at')
+    return render(request, 'meals/dish_list.html', {
+        'dishes': dishes,
+        'featured_dishes': featured_dishes
+    })
 
 def dish_detail(request, dish_id):
     dish = get_object_or_404(Dish, id=dish_id, is_available=True)
@@ -118,7 +122,7 @@ def edit_dish(request, dish_id):
     })
 
 def home(request):
-    featured_dishes = Dish.objects.filter(is_featured=True)[:6]
+    featured_dishes = Dish.objects.filter(is_available=True, is_featured=True).order_by('-created_at')[:6]
     context = {
         'featured_dishes': featured_dishes
     }

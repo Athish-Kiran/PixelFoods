@@ -5,10 +5,20 @@ from django.utils import timezone
 class DishForm(forms.ModelForm):
     class Meta:
         model = Dish
-        fields = ['name', 'description', 'price', 'image', 'is_veg', 'is_available']
+        fields = ['name', 'description', 'price', 'image', 'is_veg', 'is_available', 'expiry_date', 'is_featured']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),
+            'expiry_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'is_featured': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'is_veg': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'is_available': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set default expiry date to 7 days from now
+        if not self.instance.pk:  # Only for new dishes
+            self.initial['expiry_date'] = timezone.now() + timezone.timedelta(days=7)
 
 class ReviewForm(forms.ModelForm):
     class Meta:

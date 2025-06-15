@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django.contrib.humanize',
+    'storages',
 ]
 
 # Custom user model
@@ -124,6 +125,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Serve media files in production
+if not DEBUG:
+    # Add media files to static files
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+        os.path.join(BASE_DIR, 'media'),
+    ]
+    # Configure whitenoise to serve media files
+    WHITENOISE_MEDIA_PREFIX = '/media/'
+    WHITENOISE_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
