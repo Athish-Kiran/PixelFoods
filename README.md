@@ -166,11 +166,14 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 For any queries or support, please contact:
-- Email: [Your Email]
-- GitHub: [Your GitHub Profile]
+- Email: mohitnarayanmohit@gmail.com | 
+- GitHub: Mohit-narayan | Mahesh-M18 | Athish-Kiran
 
 ## Acknowledgments
 - Django Documentation
 - Bootstrap Documentation
-- Razorpay API Documentation
-- Render.com Documentation 
+- Render.com Documentation
+
+## Contibuters and Team
+- Mohith N | Mahesh M | Athish Kiran Reddy
+- -- The Pixel Syyndicate --
