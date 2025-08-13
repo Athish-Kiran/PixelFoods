@@ -175,5 +175,5 @@ For any queries or support, please contact:
 - Render.com Documentation
 
 ## Contibuters and Team
-- Mohith N | Mahesh M | Athish Kiran Reddy
+- Mohith N | Mahesh M | Athish K R
 - -- The Pixel Syyndicate --
